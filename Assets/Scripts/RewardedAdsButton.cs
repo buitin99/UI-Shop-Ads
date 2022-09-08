@@ -8,7 +8,11 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
     [SerializeField] string _androidAdUnitId = "Rewarded_Android";
     [SerializeField] string _iOSAdUnitId = "Rewarded_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms
- 
+
+    //Custom
+    public Text comosixDiamond;
+    private int currentDiamond;
+    private int diamond = 100;
     void Awake()
     {   
         // Get the Ad Unit ID for the current platform:
@@ -66,6 +70,8 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             Debug.Log("Unity Ads Rewarded Ad Completed");
             // Grant a reward.
             Debug.Log("You've received 100 coins");
+            currentDiamond += diamond;
+            comosixDiamond.text = "" + currentDiamond;
             // Load another ad:
             Advertisement.Load(_adUnitId, this);
         }
